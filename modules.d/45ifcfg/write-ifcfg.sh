@@ -166,7 +166,6 @@ for netup in /tmp/net.*.did-setup ; do
         [ -z "$vlan" ] && interface_bind "$netif" "$macaddr"
         echo "ONBOOT=yes"
         echo "NETBOOT=yes"
-        echo "UUID=\"$uuid\""
         strstr "$(ip -6 addr show dev $netif)" 'inet6' && echo "IPV6INIT=yes"
         if [ -f /tmp/dhclient.$netif.lease ]; then
             [ -f /tmp/dhclient.$netif.dhcpopts ] && . /tmp/dhclient.$netif.dhcpopts
@@ -175,7 +174,6 @@ for netup in /tmp/net.*.did-setup ; do
             else
                 echo "BOOTPROTO=dhcp"
             fi
-            cp /tmp/dhclient.$netif.lease /tmp/ifcfg-leases/dhclient-$uuid-$netif.lease
         else
             # If we've booted with static ip= lines, the override file is there
             [ -e /tmp/net.$netif.override ] && . /tmp/net.$netif.override

@@ -175,7 +175,7 @@ for netup in /tmp/net.*.did-setup ; do
             else
                 echo "BOOTPROTO=dhcp"
             fi
-            cp /tmp/dhclient.$netif.lease /tmp/ifcfg-leases/dhclient-$uuid-$netif.lease
+            cp /tmp/net.$netif.lease /tmp/ifcfg-leases/dhclient-$uuid-$netif.lease
         else
             # If we've booted with static ip= lines, the override file is there
             [ -e /tmp/net.$netif.override ] && . /tmp/net.$netif.override
